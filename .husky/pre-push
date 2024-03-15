@@ -1,0 +1,5 @@
+# push전 lint검사 진행
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+npm run lint
