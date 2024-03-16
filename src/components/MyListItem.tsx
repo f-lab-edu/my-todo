@@ -1,6 +1,7 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { ISaveInfo } from "./ListForm";
+import { useAtom } from "jotai";
+import { todoAtom } from "@atom/atom";
 
 const ListItem = styled.li`
   display: flex;
@@ -47,18 +48,37 @@ const Checkbox = styled.div`
 `;
 
 const MyListItem = ({ item }: { item: ISaveInfo }) => {
-  const [isSuccess, setIsSuccess] = useState(false);
+  const [todoList, setTodoList] = useAtom<ISaveInfo[]>(todoAtom);
+  const Checkitem = () => {
+    const updatedTodoList = todoList.map((v) => {
+      if (v.id === item.id) {
+        if (v.state === "active") {
+          v.state = "done";
+        } else {
+          v.state = "active";
+        }
+      }
+      return v;
+    });
+    setTodoList([...updatedTodoList]);
+    window.localStorage.setItem("todo", JSON.stringify([...todoList]));
+  };
 
+  const deleteItem = () => {
+    const filteredList = todoList.filter((v) => v.id !== item.id);
+    setTodoList([...filteredList]);
+    window.localStorage.setItem("todo", JSON.stringify([...filteredList]));
+  };
   return (
     <ListItem>
-      <ListWrap className={isSuccess ? "is-success" : ""}>
+      <ListWrap className={item.state === "done" ? "is-success" : ""}>
         <Checkbox
-          className={isSuccess ? "is-success" : ""}
-          onClick={() => setIsSuccess((prev) => !prev)}
+          className={item.state === "done" ? "is-success" : ""}
+          onClick={Checkitem}
         ></Checkbox>
         {item.todo}
       </ListWrap>
-      <button>X</button>
+      <button onClick={deleteItem}>X</button>
     </ListItem>
   );
 };

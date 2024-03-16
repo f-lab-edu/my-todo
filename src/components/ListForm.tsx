@@ -46,7 +46,7 @@ const ListForm = () => {
     if (todoRef.current && todoRef.current.value !== "") {
       // atom값 변경 후 localStorage변경
       todoList.push({
-        id: todoList.length,
+        id: Date.now(),
         todo: todoRef.current.value,
         state: "active",
       });
