@@ -20,6 +20,10 @@ const ListWrap = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
+
+  &.is-success {
+    text-decoration: line-through;
+  }
 `;
 
 const Checkbox = styled.div`
@@ -46,7 +50,7 @@ const MyListItem = ({ desc }: { desc: string }) => {
 
   return (
     <ListItem>
-      <ListWrap>
+      <ListWrap className={isSuccess ? "is-success" : ""}>
         <Checkbox
           className={isSuccess ? "is-success" : ""}
           onClick={() => setIsSuccess((prev) => !prev)}
