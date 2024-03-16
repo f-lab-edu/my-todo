@@ -10,7 +10,8 @@
     "paths": {
       "@styles/*": ["src/styles/*"],
       "@assets/*": ["src/assets/*"],
-      "@components/*": ["src/components/*"]
+      "@components/*": ["src/components/*"],
+      "@atom/*": ["src/atom/*"]
     },
 
     /* Bundler mode */

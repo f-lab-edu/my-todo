@@ -1,5 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { ISaveInfo } from "./ListForm";
 
 const ListItem = styled.li`
   display: flex;
@@ -45,7 +46,7 @@ const Checkbox = styled.div`
   }
 `;
 
-const MyListItem = ({ desc }: { desc: string }) => {
+const MyListItem = ({ item }: { item: ISaveInfo }) => {
   const [isSuccess, setIsSuccess] = useState(false);
 
   return (
@@ -55,7 +56,7 @@ const MyListItem = ({ desc }: { desc: string }) => {
           className={isSuccess ? "is-success" : ""}
           onClick={() => setIsSuccess((prev) => !prev)}
         ></Checkbox>
-        {desc}
+        {item.todo}
       </ListWrap>
       <button>X</button>
     </ListItem>
