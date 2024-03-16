@@ -1,5 +1,7 @@
 import ListForm from "@components/ListForm";
 import MyList from "@components/MyList";
+import SelectTab from "@components/SelectTab";
+
 import styled from "styled-components";
 
 const Wrapper = styled.main`
@@ -57,6 +59,7 @@ function App() {
           {month}월 {day}일 {week[dayStr]}요일
         </DateTitle>
         <ListForm />
+        <SelectTab />
         <MyList />
       </Content>
     </Wrapper>

@@ -5,3 +5,5 @@ export const todoAtom = atom(
     ? JSON.parse(window.localStorage.getItem("todo") as string)
     : []
 );
+
+export const tabStateAtom = atom("all");

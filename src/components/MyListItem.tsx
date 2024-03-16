@@ -24,6 +24,7 @@ const ListWrap = styled.div`
   gap: 10px;
 
   &.is-success {
+    color: #a7a7a7;
     text-decoration: line-through;
   }
 `;
@@ -69,6 +70,7 @@ const MyListItem = ({ item }: { item: ISaveInfo }) => {
     setTodoList([...filteredList]);
     window.localStorage.setItem("todo", JSON.stringify([...filteredList]));
   };
+
   return (
     <ListItem>
       <ListWrap className={item.state === "done" ? "is-success" : ""}>
