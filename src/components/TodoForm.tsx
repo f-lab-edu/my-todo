@@ -29,7 +29,7 @@ const Form = styled.form`
 `;
 
 // 비제어 컴포넌트로 만든 후 전역으로 저장 / localstorage
-const ListForm = () => {
+const TodoForm = () => {
   const todoRef = useRef<HTMLInputElement>(null);
   const submitTodo = () => {
     if (todoRef.current && todoRef.current.value !== "") {
@@ -51,4 +51,4 @@ const ListForm = () => {
   );
 };
 
-export default ListForm;
+export default TodoForm;
