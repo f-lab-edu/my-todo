@@ -58,7 +58,7 @@ function App() {
         <DateTitle>
           {month}월 {day}일 {week[dayStr]}요일
         </DateTitle>
-        <ListForm />
+        <TodoForm />
         <SelectTab />
         <MyList />
       </Content>
