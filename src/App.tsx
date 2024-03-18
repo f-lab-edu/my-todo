@@ -1,4 +1,4 @@
-import ListForm from "@components/ListForm";
+import TodoForm from "@components/TodoForm";
 import MyList from "@components/MyList";
 import styled from "styled-components";
 
@@ -36,12 +36,27 @@ const DateTitle = styled.span`
   text-align: center;
 `;
 
+const week: Record<string, string> = {
+  mon: "월",
+  tue: "화",
+  wed: "수",
+  thu: "목",
+  fri: "금",
+  sat: "토",
+  sun: "일",
+};
+const today = new Date();
+const month = ("0" + (today.getMonth() + 1)).slice(-2);
+const day = ("0" + today.getDate()).slice(-2);
+const dayStr = new Date().toString().toLocaleLowerCase().slice(0, 3);
 function App() {
   return (
     <Wrapper>
       <Content>
-        <DateTitle>3월 15일 금요일</DateTitle>
-        <ListForm />
+        <DateTitle>
+          {month}월 {day}일 {week[dayStr]}요일
+        </DateTitle>
+        <TodoForm />
         <MyList />
       </Content>
     </Wrapper>
