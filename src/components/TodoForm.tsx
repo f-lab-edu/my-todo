@@ -30,14 +30,16 @@ const Form = styled.form`
   }
 `;
 
+type SaveInfoStateType = "all" | "active" | "done";
+
 export interface ISaveInfo {
   id: number;
   todo: string;
-  state: string;
+  state: SaveInfoStateType;
 }
 
 // 비제어 컴포넌트로 만든 후 전역으로 저장 / localstorage
-const ListForm = () => {
+const TodoForm = () => {
   const todoRef = useRef<HTMLInputElement>(null);
   const [todo, setTodo] = useAtom(todoAtom);
   const todoList: ISaveInfo[] = todo;
@@ -74,4 +76,4 @@ const ListForm = () => {
   );
 };
 
-export default ListForm;
+export default TodoForm;

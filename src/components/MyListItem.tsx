@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { ISaveInfo } from "./ListForm";
+import { ISaveInfo } from "./TodoForm";
 import { useAtom } from "jotai";
 import { todoAtom } from "@atom/atom";
 
@@ -18,7 +18,7 @@ const ListItem = styled.li`
   }
 `;
 
-const ListWrap = styled.div`
+const ListContainer = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
@@ -73,13 +73,13 @@ const MyListItem = ({ item }: { item: ISaveInfo }) => {
 
   return (
     <ListItem>
-      <ListWrap className={item.state === "done" ? "is-success" : ""}>
+      <ListContainer className={item.state === "done" ? "is-success" : ""}>
         <Checkbox
           className={item.state === "done" ? "is-success" : ""}
           onClick={Checkitem}
         ></Checkbox>
         {item.todo}
-      </ListWrap>
+      </ListContainer>
       <button onClick={deleteItem}>X</button>
     </ListItem>
   );

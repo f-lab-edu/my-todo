@@ -2,7 +2,7 @@ import styled from "styled-components";
 import MyListItem from "./MyListItem";
 import { useAtomValue } from "jotai";
 import { tabStateAtom, todoAtom } from "@atom/atom";
-import { ISaveInfo } from "./ListForm";
+import { ISaveInfo } from "./TodoForm";
 
 const Wrapper = styled.ul`
   display: flex;
