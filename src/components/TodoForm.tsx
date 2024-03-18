@@ -1,4 +1,6 @@
+import { useAtom } from "jotai";
 import { useRef } from "react";
+import { todoAtom } from "@atom/atom";
 import styled from "styled-components";
 const Wrapper = styled.div`
   top: 0;
@@ -28,12 +30,30 @@ const Form = styled.form`
   }
 `;
 
+type SaveInfoStateType = "all" | "active" | "done";
+
+export interface ISaveInfo {
+  id: number;
+  todo: string;
+  state: SaveInfoStateType;
+}
+
 // 비제어 컴포넌트로 만든 후 전역으로 저장 / localstorage
 const TodoForm = () => {
   const todoRef = useRef<HTMLInputElement>(null);
+  const [todo, setTodo] = useAtom(todoAtom);
+  const todoList: ISaveInfo[] = todo;
+
   const submitTodo = () => {
     if (todoRef.current && todoRef.current.value !== "") {
-      console.log(todoRef.current.value);
+      // atom값 변경 후 localStorage변경
+      todoList.push({
+        id: Date.now(),
+        todo: todoRef.current.value,
+        state: "active",
+      });
+      setTodo([...todoList]);
+      window.localStorage.setItem("todo", JSON.stringify(todoList));
       todoRef.current.value = "";
     } else {
       alert("할 일을 입력 해 주세요.");
@@ -41,7 +61,12 @@ const TodoForm = () => {
   };
   return (
     <Wrapper>
-      <Form>
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          submitTodo();
+        }}
+      >
         <input type="text" ref={todoRef} placeholder="어떤 일을 하시겠어요?" />
         <button type="button" onClick={submitTodo}>
           전송
